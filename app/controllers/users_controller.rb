@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
   
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
   
   def new
@@ -18,9 +19,30 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    if @user != current_user
+      redirect_to root_url, alert: "Warning: illegal access!!"
+    end
+  end
+  
+  def update
+    if @user != current_user
+      redirect_to root_url, alert: "Warning: illegal access!!"
+    elsif @user.update(user_params)
+      flash[:success] = "Editing saved!"
+      redirect_to @user , notice: 'Profile updated.'
+    else
+      render 'edit'
+    end
+  end
+  
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :area, :password, :password_confirmation)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 end
