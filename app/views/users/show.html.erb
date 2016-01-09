@@ -1,9 +1,23 @@
-<h1>
-  <%= gravatar_for @user %>
-  <br />
-  <%= @user.name %>
-  <br />
-  <%= @user.email %>
-  <br />
-  <%= @user.area %>
-</h1>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <br />
+        <%= @user.name %>
+        <br />
+        <%= @user.email %>
+        <br />
+        <%= @user.area %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.simpletweets.any? %>
+      <h3>Simple Tweets (<%= @user.simpletweets.count %>)</h3>
+      <ol class="simpletweets">
+        <%= render @simpletweets %>
+      </ol>
+    <% end %>
+  </div>
+</div>

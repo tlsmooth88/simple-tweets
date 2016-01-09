@@ -1,0 +1,11 @@
+<li id="simpletweet-<%= simpletweet.id %>">
+  <%= link_to gravatar_for(simpletweet.user, size: 50), simpletweet.user %>
+  <span class="user"><%= link_to simpletweet.user.name, simpletweet.user %></span>
+  <span class="content"><%= simpletweet.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(simpletweet.created_at) %> ago.
+    <% if current_user == simpletweet.user %>
+      <%= link_to "delete", simpletweet, method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+  </span>
+</li>
