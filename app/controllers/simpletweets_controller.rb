@@ -7,7 +7,7 @@ class SimpletweetsController < ApplicationController
       flash[:success] = "Simple Tweet created!"
       redirect_to root_url
     else
-      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc).page(params[:page])
       render 'static_pages/home'
     end
   end
