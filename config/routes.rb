@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :simpletweets
+  resources :relations, only: [:create, :destroy]
 end
