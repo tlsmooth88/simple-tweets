@@ -26,7 +26,9 @@
     <% if @user.simpletweets.any? %>
       <h3>Simple Tweets (<%= @user.simpletweets.count %>)</h3>
       <ol class="simpletweets">
+        <%= page_entries_info @simpletweets %>
         <%= render @simpletweets %>
+        <%= paginate @simpletweets %>
       </ol>
     <% end %>
   </div>
