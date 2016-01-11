@@ -15,6 +15,7 @@
         <%= link_to "Followers", followers_user_path(@user) %>
         <br />
         <% if logged_in? && current_user != @user %>
+        <hr />
         <%= link_to "View my profile / my tweets", current_user %>
         <% end %>
         <br />
